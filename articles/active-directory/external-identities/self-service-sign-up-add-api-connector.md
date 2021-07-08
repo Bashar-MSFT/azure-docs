@@ -5,7 +5,7 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: B2B
 ms.topic: article
-ms.date: 03/02/2021
+ms.date: 07/01/2021
 
 ms.author: mimart
 author: msmimart
@@ -19,7 +19,7 @@ ms.collection: M365-identity-device-management
 To use an [API connector](api-connectors-overview.md), you first create the API connector and then enable it in a user flow.
 
 > [!IMPORTANT]
->**Starting January 4, 2021**, Google is [deprecating WebView sign-in support](https://developers.googleblog.com/2020/08/guidance-for-our-effort-to-block-less-secure-browser-and-apps.html). If you’re using Google federation or self-service sign-up with Gmail, you should [test your line-of-business native applications for compatibility](google-federation.md#deprecation-of-webview-sign-in-support).
+> **Starting September 30th, 2021**, Google is [deprecating web-view sign-in support](https://developers.googleblog.com/2016/08/modernizing-oauth-interactions-in-native-apps.html). If you’re using Google federation for B2B invitations or [Azure AD B2C](../../active-directory-b2c/identity-provider-google.md), or if you're using self-service sign-up with Gmail, Google Gmail users won't be able to sign in if your apps authenticate users with an embedded web-view. [Learn more](google-federation.md#deprecation-of-web-view-sign-in-support).
 
 ## Create an API connector
 

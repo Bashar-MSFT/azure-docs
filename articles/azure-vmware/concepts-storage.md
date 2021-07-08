@@ -3,16 +3,16 @@ title: Concepts - Storage
 description: Learn about storage capacity, storage policies, fault tolerance, and storage integration in Azure VMware Solution private clouds.
 ms.topic: conceptual
 ms.custom: contperf-fy21q4
-ms.date: 04/23/2021
+ms.date: 04/26/2021
 ---
 
 # Azure VMware Solution storage concepts
 
-Azure VMware Solution private clouds provide native, cluster-wide storage with VMware vSAN. All local storage from each host in a cluster is used in a vSAN datastore, and data-at-rest encryption is available and enabled by default. You can use Azure Storage resources to extend storage capabilities of your private clouds.
+Azure VMware Solution private clouds provide native, cluster-wide storage with VMware vSAN. Local storage from each host in a cluster is used in a vSAN datastore, and data-at-rest encryption is available and enabled by default. You can use Azure Storage resources to extend storage capabilities of your private clouds.
 
 ## vSAN clusters
 
-The [AV36 SKU](https://azure.microsoft.com/pricing/details/azure-vmware/) includes two 1.6-TB NVMe cache and eight 1.9-TB raw storage capacity. These are then split into two disk groups. The size of the raw capacity tier of a cluster is the per-host capacity times the number of hosts. For example, a four host cluster provides 61.6-TB raw capacity in the vSAN capacity tier.
+Local storage in each cluster host is used as part of a vSAN datastore. All diskgroups use an NVMe cache tier of 1.6 TB with the raw, per host, SSD-based capacity of 15.4 TB. The size of the raw capacity tier of a cluster is the per host capacity times the number of hosts. For example, a four host cluster provides 61.6-TB raw capacity in the vSAN capacity tier.
 
 Local storage in cluster hosts is used in cluster-wide vSAN datastore. All datastores are created as part of private cloud deployment and are available for use immediately. The **cloudadmin** user and all users assigned to the CloudAdmin role can manage datastores with these vSAN privileges:
 
@@ -24,13 +24,13 @@ Local storage in cluster hosts is used in cluster-wide vSAN datastore. All datas
 - Datastore.UpdateVirtualMachineMetadata
 
 >[!IMPORTANT]
->You can't change the name of datastores or clusters.
+>You can't change the name of datastores or clusters. You can select a cluster name other than "Cluster-n" where n > 1 when provisioning from somewhere other than the portal (AzureCLI or PowerShell).
 
 ## Storage policies and fault tolerance
 
 That default storage policy is set to RAID-1 (Mirroring), FTT-1, and thick provisioning.  Unless you adjust the storage policy or you apply a new policy, the cluster continues to grow with this configuration. In a three-host cluster, FTT-1 accommodates a single host's failure. Microsoft governs failures regularly and replaces the hardware when events are detected from an architecture perspective.
 
-:::image type="content" source="media/vsphere-vm-storage-policies.png" alt-text="Screenshot that shows the vSphere Client VM Storage Policies.":::
+:::image type="content" source="media/concepts/vsphere-vm-storage-policies.png" alt-text="Screenshot that shows the vSphere Client VM Storage Policies.":::
 
 
 |Provisioning type  |Description  |
@@ -41,7 +41,7 @@ That default storage policy is set to RAID-1 (Mirroring), FTT-1, and thick provi
 >[!TIP]
 >If you're unsure if the cluster will grow to four or more, then deploy using the default policy.  If you're sure your cluster will grow, then instead of expanding the cluster after your initial deployment, we recommend to deploy the extra hosts during deployment. As the VMs are deployed to the cluster, change the disk's storage policy in the VM settings to either RAID-5 FTT-1 or RAID-6 FTT-2. 
 >
->:::image type="content" source="media/vsphere-vm-storage-policies-2.png" alt-text="Screenshot ":::
+>:::image type="content" source="media/concepts/vsphere-vm-storage-policies-2.png" alt-text="Screenshot showing the RAID-5 FTT-1 and RAID-6 Ftt-2 options highlighed.":::
 
 
 ## Data-at-rest encryption

@@ -2,10 +2,10 @@
 title: Server-side encryption of Azure managed disks
 description: Azure Storage protects your data by encrypting it at rest before persisting it to Storage clusters. You can use customer-managed keys to manage encryption with your own keys, or you can rely on Microsoft-managed keys for the encryption of your managed disks.
 author: roygara
-ms.date: 04/15/2021
+ms.date: 06/29/2021
 ms.topic: conceptual
 ms.author: rogarana
-ms.service: virtual-machines
+ms.service: storage
 ms.subservice: disks
 ms.custom: references_regions
 ---
@@ -16,7 +16,7 @@ Most Azure managed disks are encrypted with Azure Storage encryption, which uses
 
 Data in Azure managed disks is encrypted transparently using 256-bit [AES encryption](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard), one of the strongest block ciphers available, and is FIPS 140-2 compliant. For more information about the cryptographic modules underlying Azure managed disks, see [Cryptography API: Next Generation](/windows/desktop/seccng/cng-portal)
 
-Azure Storage encryption does not impact the performance of managed disks and there is no additional cost. For more information about Azure Storage encryption, see [Azure Storage encryption](/azure/storage/common/storage-service-encryption).
+Azure Storage encryption does not impact the performance of managed disks and there is no additional cost. For more information about Azure Storage encryption, see [Azure Storage encryption](../storage/common/storage-service-encryption.md).
 
 > [!NOTE]
 > Temporary disks are not managed disks and are not encrypted by SSE, unless you enable encryption at host.
